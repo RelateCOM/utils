@@ -1,5 +1,6 @@
 {
   "name": "@relatecom/utils",
+  "description": "utility functions for use with frontend services and components",
   "private": false,
   "version": "0.0.0",
   "type": "module",
@@ -15,7 +16,18 @@
       "import": "./dist/utils.es.js"
     }
   },
-  "author": "relatecom<https://github.com/relatecom>",
+  "author": "freeeakn machinee",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RelateCOM/utils.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RelateCOM/utils/issues"
+  },
+  "homepage": "https://github.com/RelateCOM/utils",
   "license": "MIT",
   "scripts": {
     "dev": "vite",
