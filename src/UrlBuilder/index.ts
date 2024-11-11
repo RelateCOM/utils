@@ -4,16 +4,17 @@
 class UrlBuilder {
   /**
    * The root path of the URL.
+   * @type {string}
    */
-  private readonly rootPath: string;
+  private readonly rootPath: string = '';
 
   /**
    * Constructor for the UrlBuilder class.
-   * @param rootPath The root path of the URL.
+   * @param Path The root path of the URL.
    */
-  constructor(rootPath: string) {
-    if (!rootPath) throw new Error('Root path cannot be empty');
-    this.rootPath = rootPath;
+  constructor(Path: string) {
+    if (!Path) throw new Error('Root path cannot be empty');
+    this.rootPath = Path;
   }
 
   /**
