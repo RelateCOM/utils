@@ -12,6 +12,7 @@ class UrlBuilder {
    * @param rootPath The root path of the URL.
    */
   constructor(rootPath: string) {
+    if (!rootPath) throw new Error('Root path cannot be empty');
     this.rootPath = rootPath;
   }
 
