@@ -7,7 +7,6 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/utils.umd.js",
   "module": "./dist/utils.es.js",
   "exports": {
     "./package.json": "./package.json",

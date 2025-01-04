@@ -6,15 +6,14 @@ class UrlBuilder {
    * The root path of the URL.
    * @type {string}
    */
-  private readonly rootPath: string = '';
+  private rootPath: string;
 
   /**
    * Constructor for the UrlBuilder class.
-   * @param Path The root path of the URL.
+   * @param rootPath The root path of the URL.
    */
-  constructor(Path: string) {
-    if (!Path) throw new Error('Root path cannot be empty');
-    this.rootPath = Path;
+  constructor(rootPath: string) {
+    this.rootPath = rootPath;
   }
 
   /**
@@ -22,20 +21,24 @@ class UrlBuilder {
    * @param queryParams An object containing query parameters.
    * @returns The query string.
    */
-  private buildQueryString(queryParams?: {
-    [key: string]: string | number | boolean;
-  }): string {
-    if (!queryParams) return '';
+  private buildQueryString = (queryParams?: {
+    [key: string]: string | number | boolean | undefined | null;
+  }): string => {
+    if (!queryParams) {
+      return '';
+    }
 
-    const queryString = Object.entries(queryParams)
-      .map(
-        ([key, value]) =>
-          `${encodeURIComponent(key)}=${encodeURIComponent(value)}`,
-      )
-      .join('&');
+    const params = new URLSearchParams();
 
-    return `?${queryString}`;
-  }
+    for (const [key, value] of Object.entries(queryParams)) {
+      if (value != null) {
+        params.append(key, String(value));
+      }
+    }
+
+    const queryString = params.toString();
+    return queryString ? `?${queryString}` : '';
+  };
 
   /**
    * Builds a URL from a path and query parameters.
@@ -43,13 +46,14 @@ class UrlBuilder {
    * @param queryParams An object containing query parameters.
    * @returns The built URL.
    */
-  public buildUrl(
+  buildUrl = (
     path: string,
-    queryParams?: { [key: string]: string | number | boolean },
-  ): string {
-    if (!path) throw new Error('Path cannot be empty');
+    queryParams?: {
+      [key: string]: string | number | boolean | undefined | null;
+    },
+  ): string => {
     return `${this.rootPath}${path}${this.buildQueryString(queryParams)}`;
-  }
+  };
 }
 
 export default UrlBuilder;
